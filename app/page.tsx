@@ -1,113 +1,187 @@
+"use client";
+import IconButton from "./components/shared/IconButton";
+import ImagePicker from "./components/shared/ImagePicker";
+import InputBox from "./components/shared/InputBox";
+import { useForm } from "react-hook-form";
+import SelectBox from "./components/shared/SelectBox";
+import { formNavigation, fromField } from "@/constants";
+import { nanoid } from "nanoid";
+import Button from "./components/shared/Button";
 import Image from "next/image";
 
 export default function Home() {
+  const {
+    register,
+    watch,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const postFormData = (data: any) => {
+    console.log(data);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <section className="w-full  flex flex-col h-full">
+      <nav className="flexBetween w-full">
+        <div className="flexStart">
+          <IconButton title="menu" image="/hamburg.svg" />
+          <h5 className="bold-20 text-gray-800 ml-5">New Invoice</h5>
+        </div>
+        <div className="flexStart gap-[6px]">
+          <IconButton title="search" image="/search.svg" />
+          <IconButton title="add new form" image="/add.svg" />
+        </div>
+      </nav>
+      <div className="mt-6 bg-white  gap-7  py-6 px-[26px] overflow-hidden rounded-lg h-full flex">
+        <div className="flex-1   overflow-scroll">
+          <ImagePicker />
+
+          <form
+            onSubmit={handleSubmit(postFormData)}
+            className="text-gray-400 pb-6 h-full"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+            <div className="grid grid-cols-2 gap-x-5">
+              {fromField
+                .slice(0, 4)
+                .map((item) =>
+                  item.type === "text" ? (
+                    <InputBox
+                      errors={errors}
+                      register={register}
+                      image={item.icon}
+                      type="text"
+                      placeholder={item.plcaeholder}
+                      name={item.name}
+                    />
+                  ) : item.type === "date" ? (
+                    <InputBox
+                      errors={errors}
+                      register={register}
+                      image={item.icon}
+                      type="date"
+                      placeholder={item.plcaeholder}
+                      name={item.name}
+                    />
+                  ) : (
+                    <SelectBox
+                      key={nanoid()}
+                      register={register}
+                      errors={errors}
+                      name={item.name}
+                      placeholder={item.plcaeholder}
+                      value={item?.value}
+                    />
+                  )
+                )}
+            </div>
+            <InputBox
+              errors={errors}
+              register={register}
+              image={fromField[4].icon}
+              type="text"
+              placeholder={fromField[4].plcaeholder}
+              name={fromField[4].name}
             />
-          </a>
+            <div className="grid grid-cols-2 gap-x-5 mb-12">
+              {fromField
+                .slice(5)
+                .map((item) =>
+                  item.type === "text" ? (
+                    <InputBox
+                      key={nanoid()}
+                      errors={errors}
+                      register={register}
+                      image={item.icon}
+                      type="text"
+                      placeholder={item.plcaeholder}
+                      name={item.name}
+                    />
+                  ) : item.type === "date" ? (
+                    <InputBox
+                      key={nanoid()}
+                      errors={errors}
+                      register={register}
+                      image={item.icon}
+                      type="date"
+                      placeholder={item.plcaeholder}
+                      name={item.name}
+                    />
+                  ) : (
+                    <SelectBox
+                      key={nanoid()}
+                      register={register}
+                      errors={errors}
+                      name={item.name}
+                      placeholder={item.plcaeholder}
+                      value={item?.value}
+                    />
+                  )
+                )}
+            </div>
+            <div className="flexStart gap-x-[6px]">
+              <Button
+                type="submit"
+                width={172}
+                value="Save & Send"
+                variant="btn-blue"
+              />
+              <Button
+                type="reset"
+                width={172}
+                value="Cancel"
+                variant="btn-gray"
+              />
+            </div>
+          </form>
+        </div>
+
+        <div className="flex-intial  w-[30%]  flex flex-col justify-between  ">
+          <div className="border border-gray-100 rounded-lg h-fit  ">
+            {formNavigation.slice(0, 3).map((item, index) => (
+              <div
+                key={nanoid()}
+                className={`py-6 cursor-pointer px-8 flexStart border-gray-100  ${
+                  index < 2 && `border-b`
+                } `}
+              >
+                <Image
+                  src={item.icon}
+                  alt={item.title}
+                  width={22}
+                  height={22}
+                />
+                <div className="flex flex-col ml-5">
+                  <h5 className="bold-14 text-gray-800">{item.title}</h5>
+                  <p className="regular-12 text-gray-400">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="border border-gray-100 rounded-lg h-fit  ">
+            {" "}
+            {formNavigation.slice(3).map((item, index) => (
+              <div
+                key={nanoid()}
+                className={`py-6 cursor-pointer px-8 flexStart border-gray-100  ${
+                  index < 4 && `border-b`
+                } `}
+              >
+                <Image
+                  src={item.icon}
+                  alt={item.title}
+                  width={22}
+                  height={22}
+                />
+                <div className="flex flex-col ml-5">
+                  <h5 className="bold-14 text-gray-800">{item.title}</h5>
+                  <p className="regular-12 text-gray-400">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </section>
   );
 }
