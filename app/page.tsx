@@ -24,9 +24,9 @@ export default function Home() {
   };
 
   return (
-    <section className="w-full max-w-screen-2xl mx-auto  flex flex-col h-full">
+    <section className="w-full  max-w-screen-2xl mx-auto  flex flex-col h-full">
       <Navbar />
-      <div className="mt-6 bg-white    gap-7  py-6 px-[26px] overflow-scroll flex flex-col-reverse  rounded-lg h-full lg:flex-row">
+      <div className="mt-6 bg-white    gap-7  py-6 px-5 md:px-[26px] overflow-scroll flex flex-col-reverse  rounded-lg h-full lg:flex-row">
         {/* FORM SECIION  */}
         <div className="flex-1  lg:overflow-scroll">
           <ImagePicker />
@@ -34,7 +34,7 @@ export default function Home() {
             onSubmit={handleSubmit(postFormData)}
             className="text-gray-400 pb-6 h-full"
           >
-            <div className="grid grid-cols-2 gap-x-5">
+            <div className="grid grid-cols-1  md:grid-cols-2 gap-x-5">
               {fromField
                 .slice(0, 4)
                 .map((item) =>
@@ -78,7 +78,7 @@ export default function Home() {
               placeholder={fromField[4].plcaeholder}
               name={fromField[4].name}
             />
-            <div className="grid grid-cols-2 gap-x-5 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-5 mb-12">
               {fromField
                 .slice(5)
                 .map((item) =>
@@ -114,7 +114,7 @@ export default function Home() {
                   )
                 )}
             </div>
-            <div className="flexStart gap-x-[6px]">
+            <div className="flexStart flex-col md:flex-row gap-y-2 md:gap-x-[6px]">
               <Button
                 type="submit"
                 width={172}
@@ -131,7 +131,7 @@ export default function Home() {
           </form>
         </div>
         {/* FORM NAVIGATION SECTION  */}
-        <div className="flex-intial w-full lg:w-[30%]  flex lg:flex-col justify-between  ">
+        <div className="flex-intial w-full lg:w-[30%] flex flex-col md:flex-row lg:flex-col   justify-between  ">
           <div className="border border-gray-100 rounded-lg h-fit  ">
             {formNavigation.slice(0, 3).map((item, index) => (
               <Link key={nanoid()} href={`?filterBy=${item.title}`}>

@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={lato.className}>
         <main className="flex h-screen w-full bg-gray-50  ">
           <Sidebar />
-          <div className="px-7 h-full py-6 flex-1">{children}</div>
+          <div className=" px-3 md:px-7 h-full py-6 flex-1">{children}</div>
         </main>
       </body>
     </html>

@@ -8,7 +8,7 @@ import React, { useState } from "react";
 const ToolBar = () => {
   const [clickedItem, setClickedItem] = useState<null | string>(null);
   return (
-    <section className="w-[83px] border-r border-gray-100 bg-white flex flex-col justify-between py-7">
+    <section className=" hidden w-[83px] border-r border-gray-100 bg-white sm:flex flex-col justify-between py-7">
       <div className="flexCenter  pb-2 ">
         <Image src={"toolbar_logo.svg"} alt="logo" width={30} height={30} />
       </div>
