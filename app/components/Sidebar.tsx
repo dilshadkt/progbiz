@@ -12,8 +12,8 @@ const Sidebar = () => {
     <>
       <ToolBar />
       <section
-        className={`  w-[367px] relative transition-all duration-300  ${
-          showInvoice && `w-[20px]`
+        className={`hidden lg:block relative transition-all duration-300  ${
+          showInvoice ? `w-[20px]` : "w-[367px] "
         } bg-white text-gray-800 `}
       >
         <Image
@@ -24,7 +24,7 @@ const Sidebar = () => {
           height={14}
           className={`absolute  cursor-pointer block ${
             !showInvoice && "hidden"
-          } top-0 bottom-0 right-[2px] my-auto -rotate-90`}
+          } top-0 bottom-0 right-[2px]    my-auto -rotate-90`}
         />
         <div
           className={`flexCenter border-b border-gray-100 w-full px-4 xl:px-7 ${

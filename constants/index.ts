@@ -1,3 +1,4 @@
+////////////// SIDEBAR VALUES /////////////////
 export const sidebar = [
   {
     title: "All Invoices",
@@ -40,7 +41,7 @@ export const sidebar = [
     color: "#7CE7AC",
   },
 ];
-
+/////////// TOOL BAR ICONS WITH THEIR ROUTE DIRECTION //////////////
 export const toolbar = [
   {
     icon: "/timer.svg",
@@ -109,11 +110,12 @@ export const toolbar = [
   },
 ];
 
+//////// THESE ARE THE FORM FIELD , WE CAN ALSO ADD MORE INFORMATION IF NEEDE //////////////
 export const fromField = [
   {
     name: "Invoice number",
     icon: "/invoice.svg",
-    plcaeholder: "Selecte invoice number",
+    plcaeholder: "AA-04-19-1890",
     type: "text",
   },
   {
@@ -150,14 +152,14 @@ export const fromField = [
   {
     name: "Country",
     icon: "/phone.svg",
-    plcaeholder: "Select city",
+    plcaeholder: "Select country",
     value: ["India", "China", "Dubai"],
     type: "selection",
   },
   {
     name: "City",
     icon: "/phone.svg",
-    plcaeholder: "Select country",
+    plcaeholder: "Select city",
     value: ["Calicut", "Kochi", "Tvr"],
     type: "selection",
   },
@@ -188,7 +190,7 @@ export const formNavigation = [
     icon: "/bill.svg",
   },
   {
-    title: "Bill To",
+    title: "From ",
     description: "Set your personal details",
     icon: "/from.svg",
   },

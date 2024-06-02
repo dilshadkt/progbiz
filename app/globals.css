@@ -19,6 +19,8 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+
+    /* FLEX  */
   }
   .flexCenter {
     @apply flex items-center justify-center;
@@ -124,10 +126,12 @@
 body {
   ::-webkit-scrollbar {
     display: none;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
+
+/* CHNAGE SVG COLOR TO BLUE */
 .svg-icon {
   filter: invert(56%) sepia(100%) saturate(560%) hue-rotate(178deg)
     brightness(96%) contrast(95%);

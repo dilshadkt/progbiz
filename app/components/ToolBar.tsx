@@ -2,6 +2,7 @@
 import { toolbar } from "@/constants";
 import { nanoid } from "nanoid";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 
 const ToolBar = () => {
@@ -14,45 +15,46 @@ const ToolBar = () => {
 
       <div className="h-full overflow-y-scroll">
         {toolbar.map((item) => (
-          <div
-            title={item.title}
-            onClick={() => setClickedItem(item.title)}
-            key={nanoid()}
-            className={`h-[64px] relative cursor-pointer text-red-300    my-1 flexCenter`}
-          >
+          <Link key={nanoid()} href={`/#${item.path}`}>
             <div
-              className={`w-[2px]  absolute right-0 rounded-full h-12  transition-all duration-700 bg-blue-400 ${
-                clickedItem === item.title ? `block` : `hidden`
-              }`}
-            ></div>
-
-            <div
-              className={`p-3 hover:bg-blue-50 flexCenter ${
-                clickedItem === item.title && `bg-blue-50`
-              } rounded-lg min-h-12 min-w-12`}
+              title={item.title}
+              onClick={() => setClickedItem(item.title)}
+              className={`h-[64px] relative cursor-pointer text-red-300    my-1 flexCenter`}
             >
-              <div className="flexCenter relative">
-                {(item.title === "chat" || item.title === "vision") && (
-                  <div className="w-3 h-3 z-40 rounded-full bg-white flexCenter absolute -top-[4px] -right-[4px]">
-                    <div
-                      className={`w-[7px] h-[7px] ${
-                        item.title.includes("vision")
-                          ? `bg-red-400`
-                          : `bg-green-400`
-                      }  rounded-full`}
-                    ></div>
-                  </div>
-                )}
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={22}
-                  height={22}
-                  className={` ${clickedItem === item.title && `svg-icon`} `}
-                />
+              <div
+                className={`w-[2px]  absolute right-0 rounded-full h-12  transition-all duration-700 bg-blue-400 ${
+                  clickedItem === item.title ? `block` : `hidden`
+                }`}
+              ></div>
+
+              <div
+                className={`p-3 hover:bg-blue-50 flexCenter ${
+                  clickedItem === item.title && `bg-blue-50`
+                } rounded-lg min-h-12 min-w-12`}
+              >
+                <div className="flexCenter relative">
+                  {(item.title === "chat" || item.title === "vision") && (
+                    <div className="w-3 h-3 z-40 rounded-full bg-white flexCenter absolute -top-[4px] -right-[4px]">
+                      <div
+                        className={`w-[7px] h-[7px] ${
+                          item.title.includes("vision")
+                            ? `bg-red-400`
+                            : `bg-green-400`
+                        }  rounded-full`}
+                      ></div>
+                    </div>
+                  )}
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    width={22}
+                    height={22}
+                    className={` ${clickedItem === item.title && `svg-icon`} `}
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="flexCenter ">
@@ -64,7 +66,10 @@ const ToolBar = () => {
             height={32}
             className="overflow-hidden rounded-lg"
           />
-          <div className="w-3 h-3 rounded-full bg-white flexCenter absolute -bottom-[3px] -right-[3px]">
+          <div
+            title="online"
+            className="w-3 h-3 rounded-full bg-white flexCenter absolute -bottom-[3px] -right-[3px]"
+          >
             <div className="w-[7px] h-[7px] bg-green-500  rounded-full"></div>
           </div>
         </div>

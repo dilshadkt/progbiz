@@ -28,6 +28,7 @@ const SelectBox = ({
             <option disabled value="">
               {placeholder}
             </option>
+            {/* MAP THE ENTIRE VALUE */}
             {value?.map((item) => (
               <option key={nanoid()} value={item}>
                 {item}
@@ -43,6 +44,7 @@ const SelectBox = ({
           />
         </div>
       </div>
+      {/* ERRORS WILL SHOW HERE, IF THER */}
       {errors[name] && (
         <p className="text-red-400 regular-12">{errors[name].message}</p>
       )}

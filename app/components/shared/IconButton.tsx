@@ -7,10 +7,10 @@ const IconButton = ({
   isRotate = false,
   setRotate,
 }: {
-  image: string;
+  image: string /* ICON IN THE BUTTON*/;
   title: string;
-  isRotate?: boolean;
-  setRotate?: React.Dispatch<boolean>;
+  isRotate?: boolean /* TO ANIMATE THE ICON , -90DEG*/;
+  setRotate?: React.Dispatch<boolean> /* TO ANIMATE THE ICON , -90DEG*/;
 }) => {
   const ChangeOccure = () => {
     setRotate && setRotate(!isRotate);

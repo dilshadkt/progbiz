@@ -10,11 +10,11 @@ const InputBox = ({
   type,
 }: {
   image: string;
-  register: any;
-  name: string;
-  errors: any;
-  placeholder: string;
-  type?: string;
+  register: any /*REGISTER OBJECT OF THE REACT HOOK FORM */;
+  name: string /*THE NAME ,SHOW IN THE LABEL SECTION */;
+  errors: any /*ERROR OBJECT FROM THE REACT HOOK FORM , FOR SHOWING THE ERRORS */;
+  placeholder: string /*PLACE HOLDER OF THE INPUT FEILD */;
+  type?: string /*TYPE OF THE INPUT FILED , EXPECT (SUBMIT | RESET) */;
 }) => {
   return (
     <div>
@@ -29,6 +29,7 @@ const InputBox = ({
             } bold-14 g-rrde  mt-1 `}
             placeholder={placeholder}
           />
+          {/* BY DEFAULT DATE FIELD HAS ICON */}
           {type !== "date" && (
             <Image
               src={image}
@@ -40,6 +41,7 @@ const InputBox = ({
           )}
         </div>
       </div>
+      {/* SHOW ERROROS IF THERE */}
       {errors[name] && (
         <p className="text-red-400 regular-12">{errors[name].message}</p>
       )}

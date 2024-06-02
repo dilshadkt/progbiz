@@ -6,10 +6,10 @@ const Button = ({
   width,
   type,
 }: {
-  value: string;
-  variant: string;
+  value: string /* VALUE THAT SHOW ON THE BUTTON */;
+  variant: string /* BUTTON STYPE PROPERTY , [CLASS NAME OF STYLE] */;
   width?: number;
-  type: string;
+  type: string /* BUTTON TYPE ENUM [RESET,SUBMIT,BUTTON] */;
 }) => {
   return (
     <button
