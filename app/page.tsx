@@ -13,6 +13,7 @@ import SelectBox from "./components/shared/SelectBox";
 
 export default function Home() {
   const [selectedForm, setSelectedForm] = useState<null | string>(null);
+  console.log(selectedForm);
   const {
     register,
     formState: { errors },
@@ -190,7 +191,7 @@ export default function Home() {
                   />
                   <div className="flex flex-col ml-5">
                     <h5
-                      className={`bold-14 hover:text-blue-400  text-gray-800  ${
+                      className={`bold-14 hover:text-blue-400    ${
                         selectedForm?.includes(item.title)
                           ? `text-blue-400`
                           : `text-gray-800`
