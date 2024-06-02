@@ -60,7 +60,7 @@ const ToolBar = () => {
       <div className="flexCenter ">
         <div className="w-8 h-8 relative fleCenter   mt-2">
           <Image
-            src={"/img.png"}
+            src={"/img.svg"}
             alt="profile"
             width={32}
             height={32}
